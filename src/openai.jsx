@@ -1,6 +1,5 @@
-import openai_img_api from "./imgs/openai_api_img.png"
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { atomOneDark, style } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 const Openai = () => {
 
@@ -32,32 +31,50 @@ const Openai = () => {
     }
     `;
 
+
+    const customStyle = {
+
+      fontSize: '1rem',
+      
+
+    };
     return (
 
 
 
 
 		<div class="center-align">
-            <h2 class="materialize-green-text">Tutorial como consumir el api de openAI usando nodejs: </h2>
+            <h3 class="materialize-green-text">Tutorial como consumir el api de openAI usando nodejs: </h3>
             
-            <p> Primordialmente para utilizar la API de OpenAI tenemos que definir la URL del endpoint de la API. 
-				Posteriormente realizamos la función en la cual configuraremos las opción para la solicitud HTTP, 
+            <p> Primordialmente para utilizar la API de OpenAI tenemos que definir la URL del endpoint de la API.<br/> 
+				Posteriormente realizamos la función en la cual configuraremos las opción para la solicitud HTTP,<br/>
 				incluiremos la clave API y el objeto. 
 			</p>
 			
-            <img/>
+            
             <p></p>
 
 
         <div className="container"> 
             <div className="left-align"> 
-                    <SyntaxHighlighter 
+                    
+            </div>
+            
+            
+    <div class="row">
+      
+      <div class="col s8"><SyntaxHighlighter 
+                      
                         language="javascript" 
                         style={atomOneDark} 
+                        customStyle={customStyle}
                     >
                         {codeString}
-                    </SyntaxHighlighter>
-                </div>
+        </SyntaxHighlighter>
+        </div>
+      <div class="col s4">Texto Aqui</div>
+    </div>
+          
         </div>
 
 

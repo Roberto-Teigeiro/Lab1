@@ -1,7 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
-import M from 'materialize-css';
-import imagen1 from "./pika-1709343421048-1x.png"
+
+
 import Openai from './openai';
 import Spotify from './spotify';
 import Wikipedia from './wikipedia';
@@ -13,13 +12,12 @@ function App() {
       <header className="App-header">
 
           
-
+          <div class="container">
           <Nodejs/>
           <Spotify/>
           <Openai />
-          
           <Wikipedia/>
-
+          </div>
 
         
 
