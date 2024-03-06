@@ -1,13 +1,13 @@
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-import SpotifyApi from './spotify_Api';
+import SpotifyToken from './spotify_Api';
 const Spotify = () => {
     
     const codeString = `
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: 'grant_type=client_credentials&client_id=df4b93c96a5a4bf6b9b8a03bc8fa79b7cc&client_secret=574e275747a24d2a80471b85e2af29d9'
+        body: 'grant_type=client_credentials&client_id=CLIENTID&client_secret=CLIENTSECRET'
     
     };
       const endpoint_spotify="https://accounts.spotify.com/api/token";
@@ -28,10 +28,13 @@ const Spotify = () => {
 
             </div>
             <h3>Como se consume la API de Spotify usando NodeJS</h3>
+            <h4>Este es un ejemplo de el codigo para obtener tu token de spotify:</h4>
             <SyntaxHighlighter language="javascript" style={atomOneDark} customStyle={customStyle}>
                       {codeString}
             </SyntaxHighlighter>
-            <SpotifyApi/>
+            <p>Si lo quieres correr en nodeJS, asegurate de cambiar en el endpoint las palabras CLIENTID y CLIENTSECRET por tus valores que conseguiste anteriormente</p>
+
+            <SpotifyToken/>
             
         
         
