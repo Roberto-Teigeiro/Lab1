@@ -5,7 +5,7 @@ const Wikipedia = () => {
     return (
 
 
-        <div class="center-align">
+        <div className="center-align">
             <h2>Wikimedia API</h2>
             <p></p>
             

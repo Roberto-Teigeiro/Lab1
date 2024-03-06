@@ -43,8 +43,8 @@ const Openai = () => {
 
 
 
-		<div class="center-align">
-            <h3 class="materialize-green-text">Tutorial como consumir el api de openAI usando nodejs: </h3>
+		<div className="center-align">
+            <h3 className="materialize-green-text">Tutorial como consumir el api de openAI usando nodejs: </h3>
             
             <p> Primordialmente para utilizar la API de OpenAI tenemos que definir la URL del endpoint de la API.<br/> 
 				Posteriormente realizamos la función en la cual configuraremos las opción para la solicitud HTTP,<br/>
@@ -61,9 +61,9 @@ const Openai = () => {
             </div>
             
             
-    <div class="row">
+    <div className="row">
       
-      <div class="col s8"><SyntaxHighlighter 
+      <div className="col s8"><SyntaxHighlighter 
                       
                         language="javascript" 
                         style={atomOneDark} 
@@ -72,7 +72,7 @@ const Openai = () => {
                         {codeString}
         </SyntaxHighlighter>
         </div>
-      <div class="col s4">Texto Aqui</div>
+      <div className="col s4">Texto Aqui</div>
     </div>
           
         </div>

@@ -12,7 +12,7 @@ function App() {
       <header className="App-header">
 
           
-          <div class="container">
+          <div className="container">
           <Nodejs/>
           <Spotify/>
           <Openai />
@@ -24,7 +24,7 @@ function App() {
 
 
 
-        <div class="center-align">
+        <div className="center-align">
           <h1>Como hacer x</h1>
 
 
