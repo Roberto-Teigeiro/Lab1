@@ -1,90 +1,97 @@
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { atomOneDark } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import { useState, useCallback } from 'react';
 
 
 
-const SpotifyToken = () =>{
+const SpotifyApi = () =>{
     const [data, setData] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [clientID, setClientID] = useState(""); 
-    const [clientSecret, setClientSecret] = useState(""); 
-    const [respondeCode, setRespondeCode] = useState(null); 
+    const [cancion, setCancion] = useState(""); 
+    const [bearerToken, setBearerToken] = useState(""); 
+    const [responseData, setResponseData] = useState(null);
+    
 
 
-
-    const customStyle = {
-        fontSize: '1rem',
-      };
-
-    let myclientID="df4b93c96a5a4bf6b9b8a03bc8fa79b7"
-    let myclientSecret="574e275747a24d2a80471b85e2af29d9"
+   
     const fetchData = useCallback(
-        async (e, clientID,clientSecret) => {
+        async (e, cancion, bearerToken) => {
         e.preventDefault();
         setIsLoading(true);
             let json;
-        
-        try {
+          try {
+           
+            const endpoint_spotify = `https://api.spotify.com/v1/search?q=${cancion}&type=track`;
             const requestOptions = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: `grant_type=client_credentials&client_id=${clientID}&client_secret=${clientSecret}`
-              };
-              
+              method: 'GET',
+              headers: {
+                'Authorization': `Bearer ${bearerToken}` 
+              }
+            };
+        
+          const response = await fetch(endpoint_spotify, requestOptions); 
           
-          const endpoint_spotify = "https://accounts.spotify.com/api/token";
-          const response = await fetch(endpoint_spotify, requestOptions);
           if (!response.ok) {
             throw new Error('Something went wrong...');
           }
-          console.log("imprimiendo!")
           json = await response.json();
-          setRespondeCode(JSON.stringify(json))
+          console.log(json)
+          const formattedJSON = JSON.stringify(json, null, '\t'); 
+          setResponseData(formattedJSON); 
+           console.log('Setting responseData'); // Check if this happens on hot save
           const token = json.access_token
-          console.log("imprimiendo!")
-          console.log(JSON.stringify(json))
+          
           setData(token);
           setError("")           
         } catch (error) {
           setError(error);
         } finally {
           setIsLoading(false);
-                   
         }
       }, []); 
 
+
+
+      const openJSONInNewTab = () => {
+        const dataBlob = new Blob([responseData], { type : 'application/json' });
+        const dataURI = window.URL.createObjectURL(dataBlob);
+        window.open(dataURI, '_blank');
+      };
    
     return(
     <div>
-        <form onSubmit={(e) => fetchData(e, clientID,clientSecret)}>
+        <form onSubmit={(e) => fetchData(e,cancion, bearerToken)}>
+        
+        <span style={{ display: 'flex', alignItems: 'center', justifyContent:'center'}}>
+        <span style={{ whiteSpace: 'nowrap' }}>https://api.spotify.com/v1/search?q=</span>  
+        <input
+    style={{ borderRadius: 15, textAlign: "center", marginLeft: 5 }}
+    className="token card-panel white"
+    placeholder='Busca una canción!'
+    value={cancion}
+    onChange={e => setCancion(e.target.value)}
+  />
+  <div style={{ display: 'flex', alignItems: 'center', justifyContent:'center'}}>&type=track</div>
+</span>
+
         <input
           style={{ borderRadius: 15, textAlign: "center" }}
-          className="token col s3 card-panel white"
-          placeholder='Enter client ID'
-          value={clientID}
-          onChange={e => setClientID(e.target.value)}
+          className="client_id card-panel white"
+          placeholder='Enter user token'
+          value={bearerToken}
+          onChange={e => setBearerToken(e.target.value)}
         />
-        <input
-          style={{ borderRadius: 15, textAlign: "center" }}
-          className="client_id col s3 card-panel white"
-          placeholder='Enter client secret'
-          value={clientSecret}
-          onChange={e => setClientSecret(e.target.value)}
-        />
-        <button  className="btn waves-effect waves-light" type="submit">Obtener Token!</button>
+        <br/><button  className="btn waves-effect waves-light" type="submit">Realizar llamada de api!</button>
       </form>
 
       
       {isLoading && <p>Cargando...</p>}
       {data && <p>Tu token es: {data}</p>}
       {error && <p>Error: {error.message}</p>}
-      {respondeCode && <p>El resultado que nos dio spotify es:</p> && <SyntaxHighlighter language="javascript" style={atomOneDark} customStyle={customStyle}>
-                      {respondeCode}
-       </SyntaxHighlighter>}
+      {responseData && <br/> && (
+  <button  className="btn waves-effect waves-light" onClick={() => openJSONInNewTab()}>Ver la respuesta JSON!</button>
+)}
     </div>
     )
 }
 
-export default SpotifyToken
+export default SpotifyApi
