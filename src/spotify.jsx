@@ -19,6 +19,18 @@ const Spotify = () => {
     const customStyle = {
         fontSize: '1rem',
       };
+      const codeString2 = `
+       const endpoint_spotify = 'https://api.spotify.com/v1/search?q={cancion}&type=track';
+      const requestOptions = {
+       method: 'GET',
+       headers: {
+       'Authorization': \`Bearer {bearerToken}\` 
+       }
+       };
+       
+       const response = await fetch(endpoint_spotify, requestOptions); 
+       `;
+      
       
     return (
         <div className="center-align">
@@ -32,6 +44,8 @@ const Spotify = () => {
             </div>
             <h3>Como se consume la API de Spotify usando NodeJS</h3>
             <h4>Este es un ejemplo de el codigo para obtener tu token de spotify:</h4>
+            <h3>primero crea una app desde spotify para obtener tus parametros que te pedire</h3>
+            <a className="waves-effect waves-light btn" href="https://developer.spotify.com/dashboard" target="_blank" rel="noreferrer">Crea tu app de spotify!</a>
             <SyntaxHighlighter language="javascript" style={atomOneDark} customStyle={customStyle}>
                       {codeString}
             </SyntaxHighlighter>
@@ -40,12 +54,19 @@ const Spotify = () => {
             <SpotifyToken/>
             <div className='row'>
                 <p>Despues, vamos a hacer una busqueda con nuestro token!</p>
-            <div class="col s6">
+            <div class="col s12">
                 <SpotifyApi/>
             </div>
             
-            <div class="col s6">
-                    hola2
+            <div class="col s8">
+            <SyntaxHighlighter language="javascript" style={atomOneDark} customStyle={customStyle}>
+                      {codeString2}
+            </SyntaxHighlighter>
+                    
+            </div>
+            <div class="col s4 center-align">
+            Este es el codigo que estamos utilizando para hacer la llamada api
+                    
             </div>
 
             </div>

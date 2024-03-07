@@ -18,8 +18,7 @@ const SpotifyToken = () =>{
         fontSize: '1rem',
       };
 
-    let myclientID="df4b93c96a5a4bf6b9b8a03bc8fa79b7"
-    let myclientSecret="574e275747a24d2a80471b85e2af29d9"
+   
     const fetchData = useCallback(
         async (e, clientID,clientSecret) => {
         e.preventDefault();
