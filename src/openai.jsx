@@ -82,9 +82,9 @@ const Openai = () => {
       </div>
     </div>
 
-      <h3> Usar un servidor HTTP utilizanso Node.js </h3>
+      <h3> Usar un servidor HTTP utilizando Node.js </h3>
       <p>
-        Para manejar las solucitudes HTTP, cadenas de consulas y analizar cadenas URL importamos los modulos "http", "querystring" y "url" del Node
+        Para manejar las solucitudes HTTP, cadenas de consulta y analizar cadenas URL importamos los modulos "http", "querystring" y "url" del Node
       </p>
       <div className="container">  
         <div className="row">
