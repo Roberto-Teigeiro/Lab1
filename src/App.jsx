@@ -26,8 +26,6 @@ function App() {
 
 
         <div className="center-align">
-          <h1>Como hacer x</h1>
-
 
         </div>
       </header>
