@@ -4,7 +4,7 @@ import { useState, useCallback } from 'react';
 
 
 
-const SpotifyApi = () =>{
+const SpotifyToken = () =>{
     const [data, setData] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
@@ -41,7 +41,7 @@ const SpotifyApi = () =>{
           }
           console.log("imprimiendo!")
           json = await response.json();
-          setRespondeCode("//La respuesta que nos dio Spotify es: \n"+JSON.stringify(json, null, '\t'))
+          setRespondeCode(JSON.stringify(json))
           const token = json.access_token
           console.log("imprimiendo!")
           console.log(JSON.stringify(json))
@@ -59,26 +59,21 @@ const SpotifyApi = () =>{
     return(
     <div>
         <form onSubmit={(e) => fetchData(e, clientID,clientSecret)}>
-        
-        <span style={{ display: 'flex', alignItems: 'center', justifyContent:'center'}}>
-        <div>hola</div>
-  <input
-    style={{ borderRadius: 15, textAlign: "center", marginLeft: 5 }}
-    className="token card-panel white"
-    placeholder='Busca una canción!'
-    value={clientID}
-    onChange={e => setClientID(e.target.value)}
-  />
-</span>
-
         <input
           style={{ borderRadius: 15, textAlign: "center" }}
-          className="client_id card-panel white"
-          placeholder='Enter user token'
+          className="token col s3 card-panel white"
+          placeholder='Enter client ID'
+          value={clientID}
+          onChange={e => setClientID(e.target.value)}
+        />
+        <input
+          style={{ borderRadius: 15, textAlign: "center" }}
+          className="client_id col s3 card-panel white"
+          placeholder='Enter client secret'
           value={clientSecret}
           onChange={e => setClientSecret(e.target.value)}
         />
-        <br/><button  className="btn waves-effect waves-light" type="submit">Obtener Token!</button>
+        <button  className="btn waves-effect waves-light" type="submit">Obtener Token!</button>
       </form>
 
       
@@ -92,4 +87,4 @@ const SpotifyApi = () =>{
     )
 }
 
-export default SpotifyApi
+export default SpotifyToken
